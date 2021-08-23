@@ -10,7 +10,9 @@
     {
       "name": "Kha Anh",
       "phoneNumber": "0988737773",
-      "id": "ev8KrTa6X"
+      "id": "ev8KrTa6X",
+      "email": "nnvkct2@yahoo.com",
+      "password": "e10adc3949ba59abbe56e057f20f883e"
     },
     {
       "name": "Van Teo",
@@ -30,42 +32,6 @@
       "description": "Hang Thai Lan nhap khau chinh hang",
       "id": "1rgG_52-i",
       "image": "productImage/15c65cc9f951e91feb23ea74158e45e5"
-    },
-    {
-      "name": "Iphone 5",
-      "description": "Hang second-hand loai I",
-      "id": "Q2nULRQHp",
-      "image": ""
-    },
-    {
-      "name": "Hacker is testing",
-      "description": "Hello",
-      "id": "lQ7h1C_Rnw",
-      "image": ""
-    },
-    {
-      "name": "Hacker is testing",
-      "description": "Hello",
-      "id": "h4Z57ea38O",
-      "image": ""
-    },
-    {
-      "name": "Hacker is testing",
-      "description": "Hello",
-      "id": "EDsWdZdYHo",
-      "image": ""
-    },
-    {
-      "name": "Hacker is testing",
-      "description": "Hello",
-      "id": "N7TPwb4U9v",
-      "image": ""
-    },
-    {
-      "name": "Hacker is testing",
-      "description": "Hello",
-      "id": "H40jAGCiN",
-      "image": ""
     }
   ]
 }

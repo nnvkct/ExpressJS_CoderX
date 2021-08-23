@@ -10,6 +10,7 @@ import { common } from "./common/index.js";
 import dotenv from "dotenv";
 import sessionMiddleware from "./middleware/session.middleware.js";
 import session from "express-session";
+import csrf from "csurf";
 
 dotenv.config();
 
@@ -31,6 +32,15 @@ app.use(cookieParser(common.secretKey));
 
 app.use(authMiddleware.noRequireAuth);
 app.use(sessionMiddleware);
+
+app.use(csrf({ cookie: true }));
+// error handler
+app.use(function (err, req, res, next) {
+  if (err.code !== "EBADCSRFTOKEN") return next(err);
+
+  // handle CSRF token errors here
+  res.render(join(__dirname, "views/error/index"));
+});
 
 app.use(express.static(join(__dirname, "public")));
 

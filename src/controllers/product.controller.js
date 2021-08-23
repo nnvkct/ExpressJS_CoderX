@@ -50,7 +50,10 @@ export var productController = {
   },
   create: function (req, res) {
     var values = { name: "", description: "" };
-    res.render(join(__dirname, "views/product/create"), { values });
+    res.render(join(__dirname, "views/product/create"), {
+      values,
+      csrfToken: req.csrfToken()
+    });
   },
   createNewProduct: function (req, res) {
     if (req.body) {

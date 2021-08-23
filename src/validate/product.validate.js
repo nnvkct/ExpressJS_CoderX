@@ -7,6 +7,8 @@ export var productValidate = {
     var errors = [];
     var values = req.body;
 
+    console.log("IM here 222");
+
     if (!req.body.name || !req.body.name.trim()) {
       errors.push("Vui lòng nhập tên sản phẩm!");
     }

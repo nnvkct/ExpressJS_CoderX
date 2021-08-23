@@ -25,6 +25,7 @@ head
       .login100-pic.js-tilt(data-tilt='')
         img(src='images/img-01.png', alt='IMG')
       form.login100-form.validate-form(method="POST")
+        input(type="hidden", name="_csrf", value=csrfToken)
         span.login100-form-title Member Login
         .wrap-input100.validate-input(data-validate='Valid email is required: ex@abc.xyz')
           input.input100(type='text', name='email', placeholder='Email', value = values? values.email : "")
