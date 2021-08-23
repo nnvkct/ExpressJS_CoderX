@@ -1,0 +1,74 @@
+extends ../layout/common
+
+block content
+  h1.mt-1 Products
+  if products.length > 0
+
+    .row
+      each product in products
+        .col-sm-6.col-md-3
+          .card.mt-2
+            img.card-img-top(src=product.image)
+            .card-body
+              h5.card-title= product.name
+              p.card-text= product.description
+              a.btn.btn-primary(href="#")
+                i.fas.fa-shopping-cart.pe-2
+                | Thêm vào giỏ hàng
+    nav
+      ul.pagination
+        case phanTrang.currentPage
+          when 1
+            li.page-item.disabled
+              a.page-link(href='/product?page=1', tabindex='-1', aria-disabled='true') First
+            li.page-item.active(aria-current='page')
+              a.page-link(href='/product?page=1') 1
+            if (phanTrang.lastPage >= 2)
+              li.page-item
+                a.page-link(href='/product?page=2') 2
+            if (phanTrang.lastPage >= 3)
+              li.page-item
+                a.page-link(href='/product?page=3') 3
+            if (phanTrang.lastPage == 1)
+              li.page-item.disabled
+                a.page-link(href='/product?page=' + phanTrang.lastPage) Last
+            else
+              li.page-item
+                a.page-link(href='/product?page=' + phanTrang.lastPage) Last
+          when phanTrang.lastPage
+            li.page-item
+              a.page-link(href='/product?page=1', tabindex='-1', aria-disabled='true') First
+            if (phanTrang.lastPage >= 3)
+              li.page-item
+                a.page-link(href='/product?page=' + `${phanTrang.currentPage-2}`)= phanTrang.currentPage - 2
+            li.page-item
+              a.page-link(href='/product?page=' + `${phanTrang.currentPage-1}`)= phanTrang.currentPage - 1
+            li.page-item.active(aria-current='page')
+              a.page-link(href='/product?page=' + phanTrang.currentPage)= phanTrang.currentPage
+            li.page-item.disabled
+              a.page-link(href='/product?page=' + phanTrang.lastPage) Last
+          default
+            li.page-item
+              a.page-link(href='/product?page=1', tabindex='-1', aria-disabled='true') First
+            li.page-item
+              a.page-link(href='/product?page=' + `${phanTrang.currentPage-1}`)= phanTrang.currentPage -1
+            li.page-item.active(aria-current='page')
+              a.page-link(href='/product?page=' + phanTrang.currentPage)= phanTrang.currentPage
+            li.page-item
+              a.page-link(href='/product?page=' + `${phanTrang.currentPage+1}`)= phanTrang.currentPage +1
+            li.page-item
+              a.page-link(href='/product?page=' + phanTrang.lastPage) Last
+  else
+    #notfound
+      .notfound
+        .notfound-404
+          h1 Oops!
+          h2 404 - The Page can&apos;t be found
+        a(href='/') Go To Homepage
+
+              
+
+    
+      
+
+

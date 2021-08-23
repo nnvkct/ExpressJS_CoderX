@@ -9,7 +9,7 @@ export var authController = {
     res.render(join(__dirname, "views/auth/index"));
   },
   login: function (req, res) {
-    res.cookie("userID", res.locals.user.id);
+    res.cookie("userID", res.locals.user.id, { signed: true });
     res.redirect("/users");
   }
 };

@@ -3,7 +3,7 @@ import db from "../db.js";
 
 export var authMiddleware = {
   requireAuth: function (req, res, next) {
-    if (!req.cookies.userID) {
+    if (!req.signedCookies.userID) {
       res.redirect("/auth");
       return;
     }
@@ -12,13 +12,15 @@ export var authMiddleware = {
     var user = lodash
       .chain(db.data)
       .get("users")
-      .find({ id: req.cookies.userID })
+      .find({ id: req.signedCookies.userID })
       .value();
 
     if (!user) {
       res.redirect("/auth");
       return;
     }
+
+    res.locals.loginUser = user;
 
     next();
   }
