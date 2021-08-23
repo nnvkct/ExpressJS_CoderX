@@ -1,14 +1,24 @@
 import db from "../db.js";
 import { join } from "path";
+import shortid from "shortid";
 
 async function readDb() {
   await db.read();
 
-  if (!db.data) {
-    db.data = { products: [] };
+  if (!db.data.products) {
+    db.data = { users: db.data.users, products: [] };
   }
 
   return db.data;
+}
+
+async function updateDb(data) {
+  // You can also use this syntax if you prefer
+  const posts = db.data.products;
+  posts.push(data);
+
+  // Write db.data content to db.json
+  await db.write();
 }
 
 var products = [];
@@ -26,7 +36,6 @@ export var productController = {
       products = data.products.slice(start, end);
       var lastPage =
         Math.ceil(Object.keys(data.products).length / perPage) || 1;
-      console.log(lastPage);
       var phanTrang = {
         firstPage: 1,
         lastPage,
@@ -38,5 +47,21 @@ export var productController = {
         phanTrang
       });
     });
+  },
+  create: function (req, res) {
+    var values = { name: "", description: "" };
+    res.render(join(__dirname, "views/product/create"), { values });
+  },
+  createNewProduct: function (req, res) {
+    if (req.body) {
+      req.body.id = shortid();
+      req.body.name = req.body.name.trim();
+      req.body.image = req.file
+        ? req.file.path.split("/").slice(4).join("/")
+        : "";
+      req.body.description = req.body.description.trim();
+      updateDb(req.body);
+    }
+    res.redirect("/product");
   }
 };

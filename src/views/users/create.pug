@@ -1,6 +1,6 @@
 extends ../layout/common
 block content
-  h1 Create new user
+  h1 Tạo người dùng mới
   
   .d-flex.flex-column(style="width:300px;")
     if errors
@@ -13,4 +13,4 @@ block content
       .mb-3
         label.form-label(for='phoneNumber') Phone Number:
         input#phoneNumber.form-control(type='text', name="phoneNumber", value = values ? values.phoneNumber.trim() : "")
-      button.btn.btn-primary Create
+      button.btn.btn-primary Tạo mới

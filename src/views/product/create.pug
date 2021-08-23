@@ -1,0 +1,23 @@
+extends ../layout/common
+block content
+  h1 Tạo sản phẩm mới
+  
+  .d-flex.flex-column(style="width:300px;")
+    if errors
+      each error in errors
+        .alert.alert-danger(role='alert')= error
+    
+    form(action="/product/create", method="POST", enctype="multipart/form-data")
+      .mb-3
+        label.form-label(for='name') Tên sản phẩm:
+        input#name.form-control(type='text', name="name", value = values.name ? values.name.trim() : "")
+      .mb-3
+        label.form-label(for='description') Mô tả:
+        textarea#description.form-control(rows='3', name="description")= values.description ? values.description.trim() : ""
+      .mb-3
+        label.form-label(for='image') Hình ảnh:
+        input#image.form-control(type='file', name="image")
+      button.btn.btn-primary Tạo mới
+
+
+    

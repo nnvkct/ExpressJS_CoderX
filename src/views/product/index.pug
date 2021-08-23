@@ -3,12 +3,11 @@ extends ../layout/common
 block content
   h1.mt-1 Products
   if products.length > 0
-
     .row
       each product in products
-        .col-sm-6.col-md-3
+        .col.col-sm-6.col-md-4
           .card.mt-2
-            img.card-img-top(src=product.image)
+            img.card-img-top(src=product.image ? product.image : "/productImage/no_image.jfif")
             .card-body
               h5.card-title= product.name
               p.card-text= product.description

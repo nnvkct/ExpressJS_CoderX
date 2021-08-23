@@ -8,14 +8,13 @@ import cookieParser from "cookie-parser";
 import { authMiddleware } from "./middleware/auth.middleware.js";
 import { common } from "./common/index.js";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const __dirname = "/sandbox/src";
 
 const app = express();
 const port = 3000;
-
-console.log(process.env.SECRET_KEY);
 
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "pug");
