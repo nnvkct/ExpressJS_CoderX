@@ -1,14 +1,20 @@
 {
+  "type": "module",
   "name": "node-http-server",
   "version": "1.0.0",
   "description": "Node.js example server starter project",
   "main": "src/index.js",
+  "nodemonConfig": {
+    "ignore": ["/sandbox/fdsfs.json"]
+  },
   "scripts": {
     "start": "nodemon src/index.js"
   },
   "dependencies": {
     "body-parser": "1.19.0",
+    "dotenv": "10.0.0",
     "express": "4.17.1",
+    "lowdb": "2.1.0",
     "pug": "3.0.2"
   },
   "devDependencies": {
