@@ -3,12 +3,19 @@
     {
       "name": "Teo",
       "phoneNumber": "666777",
-      "id": "0lYG47Ry2"
+      "id": "0lYG47Ry2",
+      "email": "nnvkct@yahoo.com",
+      "password": "e10adc3949ba59abbe56e057f20f883e"
     },
     {
       "name": "fsdfs",
       "phoneNumber": "43324",
       "id": "YlJRdIYNS"
+    },
+    {
+      "name": "Kha Anh",
+      "phoneNumber": "0988737773",
+      "id": "ev8KrTa6X"
     }
   ]
 }
