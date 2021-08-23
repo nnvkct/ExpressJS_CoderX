@@ -1,10 +1,9 @@
 import bodyParser from "body-parser";
 import express from "express";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+import { join } from "path";
 import userRoute from "./routes/user.route.js";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = "/sandbox/src";
 
 const app = express();
 const port = 3000;
