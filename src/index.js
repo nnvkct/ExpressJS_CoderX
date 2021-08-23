@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser";
 import { authMiddleware } from "./middleware/auth.middleware.js";
 import { common } from "./common/index.js";
 import dotenv from "dotenv";
+import sessionMiddleware from "./middleware/session.middleware.js";
+import session from "express-session";
 
 dotenv.config();
 
@@ -19,20 +21,22 @@ const port = 3000;
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "pug");
 
+app.use(
+  session({ secret: "mySecret", resave: false, saveUninitialized: false })
+);
+
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser(common.secretKey));
+
+app.use(authMiddleware.noRequireAuth);
+app.use(sessionMiddleware);
 
 app.use(express.static(join(__dirname, "public")));
 
 app.use("/users", authMiddleware.requireAuth, userRoute);
 app.use("/auth", authRoute);
 app.use("/product", productRoute);
-
-app.get("/cookie", function (req, res, next) {
-  res.cookie("user-id", "Hellofsdfs");
-  res.send("Hello");
-});
 
 app.get("/", (req, res) => {
   res.render("index", { name: "NNV" });

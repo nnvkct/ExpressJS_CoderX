@@ -8,13 +8,6 @@
       "password": "e10adc3949ba59abbe56e057f20f883e"
     },
     {
-      "name": "fsdfs",
-      "phoneNumber": "43324",
-      "id": "YlJRdIYNS",
-      "email": "nnvkct2@yahoo.com",
-      "password": "e10adc3949ba59abbe56e057f20f883e"
-    },
-    {
       "name": "Kha Anh",
       "phoneNumber": "0988737773",
       "id": "ev8KrTa6X"
@@ -27,27 +20,51 @@
   ],
   "products": [
     {
-      "id": "36938e73-632f-4fc9-99cf-12446e0183b8",
-      "name": "Milk - 2%",
-      "image": "http://loremflickr.com/320/240",
-      "description": "vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam"
+      "name": "Apple Watch 4",
+      "description": "Hang fake loai II",
+      "id": "Io2QIhAqe",
+      "image": "productImage/a8779862824aabf33cfbc93f26d426f2"
     },
     {
-      "name": "Dong ho",
-      "description": "Dong ho apple watch fake loai 1",
-      "id": "baeBjCb5I",
-      "image": "productImage/37f04c9a587741f84fcac71ded067a78"
+      "name": "Sua tam Sunsilk",
+      "description": "Hang Thai Lan nhap khau chinh hang",
+      "id": "1rgG_52-i",
+      "image": "productImage/15c65cc9f951e91feb23ea74158e45e5"
     },
     {
-      "name": "Sua tam",
-      "description": "Sua tam thai lan nhap khau chinh hang",
-      "id": "9SQnVx_x2",
-      "image": "productImage/00960a72f80ccb587e622828e9a6ab1d"
+      "name": "Iphone 5",
+      "description": "Hang second-hand loai I",
+      "id": "Q2nULRQHp",
+      "image": ""
     },
     {
-      "name": "Van Teo22",
-      "description": "fdsfdsf",
-      "id": "Ol_EAWkUh",
+      "name": "Hacker is testing",
+      "description": "Hello",
+      "id": "lQ7h1C_Rnw",
+      "image": ""
+    },
+    {
+      "name": "Hacker is testing",
+      "description": "Hello",
+      "id": "h4Z57ea38O",
+      "image": ""
+    },
+    {
+      "name": "Hacker is testing",
+      "description": "Hello",
+      "id": "EDsWdZdYHo",
+      "image": ""
+    },
+    {
+      "name": "Hacker is testing",
+      "description": "Hello",
+      "id": "N7TPwb4U9v",
+      "image": ""
+    },
+    {
+      "name": "Hacker is testing",
+      "description": "Hello",
+      "id": "H40jAGCiN",
       "image": ""
     }
   ]
