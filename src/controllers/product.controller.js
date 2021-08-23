@@ -1,16 +1,10 @@
-import db from "../db.js";
+import { db, readDb } from "../db.js";
 import { join } from "path";
 import shortid from "shortid";
 
-async function readDb() {
-  await db.read();
+var products = [];
 
-  if (!db.data.products) {
-    db.data = { users: db.data.users, products: [] };
-  }
-
-  return db.data;
-}
+const __dirname = "/sandbox/src";
 
 async function updateDb(data) {
   // You can also use this syntax if you prefer
@@ -20,10 +14,6 @@ async function updateDb(data) {
   // Write db.data content to db.json
   await db.write();
 }
-
-var products = [];
-
-const __dirname = "/sandbox/src";
 
 export var productController = {
   index: function (req, res) {

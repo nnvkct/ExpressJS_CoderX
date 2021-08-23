@@ -1,0 +1,24 @@
+extends ../layout/common
+
+block content
+
+  h1 Your Cart
+
+  table.table
+    thead
+      tr
+        th(scope='col') #
+        th(scope='col') Tên Sản phẩm
+        th(scope='col') Số lượng
+        th(scope='col') Hình ảnh
+    tbody
+      - var n = 1;
+      each item in giohang
+        tr
+          th(scope='row')= n
+          td= item.name
+          td= item.quantity
+          td
+            img(src=item.image, width=128)
+        - n++;
+          

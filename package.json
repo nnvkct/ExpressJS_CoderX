@@ -5,9 +5,7 @@
   "description": "Node.js example server starter project",
   "main": "src/index.js",
   "nodemonConfig": {
-    "ignore": [
-      "/sandbox/fdsfs.json"
-    ]
+    "ignore": ["src/db.json"]
   },
   "scripts": {
     "start": "nodemon src/index.js"

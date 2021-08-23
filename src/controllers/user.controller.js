@@ -1,16 +1,6 @@
-import db from "../db.js";
+import { db, readDb } from "../db.js";
 import { join } from "path";
 import shortid from "shortid";
-
-async function readDb() {
-  await db.read();
-
-  if (!db.data) {
-    db.data = { users: [] };
-  }
-
-  return db.data;
-}
 
 async function updateDb(data) {
   // You can also use this syntax if you prefer
@@ -46,7 +36,9 @@ export var userController = {
     });
   },
   create: function (req, res) {
-    res.render(join(__dirname, "views/users/create"));
+    res.render(join(__dirname, "views/users/create"), {
+      csrfToken: req.csrfToken()
+    });
   },
   viewById: function (req, res) {
     var id = req.params.id;
@@ -71,10 +63,12 @@ export var userController = {
   },
   createNewUser: function (req, res) {
     if (req.body) {
-      req.body.id = shortid();
-      req.body.name = req.body.name.trim();
-      req.body.phoneNumber = req.body.phoneNumber.trim();
-      updateDb(req.body);
+      var data = {
+        name: req.body.name.trim(),
+        phoneNumber: req.body.phoneNumber.trim(),
+        id: shortid()
+      };
+      updateDb(data);
     }
     res.redirect("/users");
   }

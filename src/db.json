@@ -22,16 +22,25 @@
   ],
   "products": [
     {
-      "name": "Apple Watch 4",
+      "name": "Apple Watch 5",
       "description": "Hang fake loai II",
       "id": "Io2QIhAqe",
       "image": "productImage/a8779862824aabf33cfbc93f26d426f2"
     },
     {
-      "name": "Sua tam Sunsilk",
+      "name": "Sua tam Sunsilk2",
       "description": "Hang Thai Lan nhap khau chinh hang",
       "id": "1rgG_52-i",
       "image": "productImage/15c65cc9f951e91feb23ea74158e45e5"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "TjP-d1Y3N",
+      "cart": {
+        "Io2QIhAqe": 5,
+        "1rgG_52-i": 3
+      }
     }
   ]
 }

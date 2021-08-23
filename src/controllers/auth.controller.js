@@ -10,7 +10,9 @@ export var authController = {
   },
   login: function (req, res) {
     res.cookie("userID", res.locals.user.id, { signed: true });
+
     var { history } = req.session;
+    // console.log(history);
     if (!history) {
       history = "/";
     }

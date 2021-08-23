@@ -1,4 +1,4 @@
-import db from "../db.js";
+import { db } from "../db.js";
 import lodash from "lodash";
 import { join } from "path";
 import md5 from "md5";

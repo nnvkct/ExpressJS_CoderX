@@ -1,5 +1,5 @@
 import lodash from "lodash";
-import db from "../db.js";
+import { db } from "../db.js";
 
 export var authMiddleware = {
   requireAuth: function (req, res, next) {
