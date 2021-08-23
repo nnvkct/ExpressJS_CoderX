@@ -1,22 +1,17 @@
-import { db } from "../db.js";
-import lodash from "lodash";
 import { join } from "path";
 import md5 from "md5";
+import { User } from "../models/user.model.js";
 
 const __dirname = "/sandbox/src";
 
 export var authValidate = {
-  login: function (req, res, next) {
+  login: async function (req, res, next) {
     var values = req.body;
     var { email, password } = values;
     var errors = [];
 
     // Important: value() needs to be called to execute chain
-    var user = lodash
-      .chain(db.data)
-      .get("users")
-      .find({ email: email })
-      .value();
+    var user = await User.findOne({ email: email });
 
     if (!user) {
       errors.push("User does not existed!");

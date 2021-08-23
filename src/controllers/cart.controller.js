@@ -1,50 +1,46 @@
-import lodash from "lodash";
-import { db, readDb } from "../db.js";
+import { Sessions } from "../models/session.model.js";
+import { Product } from "../models/product.model.js";
 import { join } from "path";
 
 const __dirname = "/sandbox/src";
 
 async function addToCart(sessionId, productId) {
-  db.chain = lodash.chain(await readDb());
+  var count = 0;
+  await Sessions.findOne({ sessionID: sessionId }).then(function (result) {
+    try {
+      count = result.cart[productId] || 0;
+    } catch (err) {
+      count = 0;
+    }
+  });
 
-  var count = db.chain
-    .get("sessions")
-    .find({ id: sessionId })
-    .get("cart." + productId, 0)
-    .value();
-
-  var updateData = db.chain
-    .get("sessions")
-    .find({ id: sessionId })
-    .set("cart." + productId, count + 1)
-    .value();
-
-  db.chain
-    .get("sessions")
-    .find({ id: sessionId })
-    .assign({ cart: updateData.cart })
-    .value();
-
-  // Write db.data content to db.json
-  db.write();
+  await Sessions.updateOne(
+    { sessionID: sessionId },
+    {
+      $set: {
+        [`cart.${productId}`]: count + 1
+      }
+    }
+  );
 }
 
 export var cartController = {
   index: async function (req, res) {
-    db.chain = lodash.chain(await readDb());
     var { sessionID } = req.signedCookies;
-    var cart = db.chain.get("sessions").find({ id: sessionID }).value();
+    var cart = [];
+    var result = await Sessions.findOne({ sessionID });
+    cart = result.cart;
+
     var giohang = [];
-    for (let item in cart.cart) {
-      var productItem = db.chain.get("products").find({ id: item }).value();
+    for (let item in cart) {
+      var productItem = await Product.findOne({ _id: item });
       giohang.push({
         id: item,
         name: productItem.name,
-        quantity: cart.cart[item],
+        quantity: cart[item],
         image: productItem.image
       });
     }
-
     res.render(join(__dirname, "views/cart/index"), { giohang });
   },
   add: function (req, res) {

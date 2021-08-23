@@ -12,6 +12,7 @@ import dotenv from "dotenv";
 import sessionMiddleware from "./middleware/session.middleware.js";
 import session from "express-session";
 import csrf from "csurf";
+import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -19,6 +20,15 @@ const __dirname = "/sandbox/src";
 
 const app = express();
 const port = 3000;
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose is connected");
+});
 
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "pug");

@@ -1,56 +1,34 @@
-import { db, readDb } from "../db.js";
 import { join } from "path";
-import shortid from "shortid";
-
-async function updateDb(data) {
-  // You can also use this syntax if you prefer
-  const posts = db.data.users;
-  posts.push(data);
-
-  // Write db.data content to db.json
-  await db.write();
-}
-
-async function deleteUserbyID(id) {
-  var newUsers = users.filter(function (user) {
-    return user.id !== id;
-  });
-
-  db.data = { users: newUsers };
-
-  await db.write();
-}
+import { User } from "../models/user.model.js";
 
 var users = [];
-readDb().then((data) => {
-  users = data.users;
-});
 
 const __dirname = "/sandbox/src";
 
 export var userController = {
-  index: function (req, res) {
-    readDb().then((data) => {
-      users = data.users;
-      res.render(join(__dirname, "views/users/index"), { users });
-    });
+  index: async function (req, res) {
+    users = await User.find();
+    console.log(users);
+    res.render(join(__dirname, "views/users/index"), { users });
   },
   create: function (req, res) {
     res.render(join(__dirname, "views/users/create"), {
       csrfToken: req.csrfToken()
     });
   },
-  viewById: function (req, res) {
+  viewById: async function (req, res) {
     var id = req.params.id;
-    var user = users.find(function (user) {
-      return user.id === id;
-    });
+    console.log("Im here 3");
+    var user = await User.findOne({ _id: id });
     res.render(join(__dirname, "views/users/viewUser"), { user });
   },
   deleteUserId: function (req, res) {
     var id = req.params.id;
 
-    deleteUserbyID(id).then(console.log("Delete done!"));
+    User.deleteOne({ _id: id }, function (err) {
+      if (err) return console.log(err);
+    });
+
     res.redirect("/users");
   },
   searchUserId: function (req, res) {
@@ -61,14 +39,13 @@ export var userController = {
 
     res.render(join(__dirname, "views/users/index"), { users: matchUser });
   },
-  createNewUser: function (req, res) {
+  createNewUser: async function (req, res) {
     if (req.body) {
       var data = {
         name: req.body.name.trim(),
-        phoneNumber: req.body.phoneNumber.trim(),
-        id: shortid()
+        phoneNumber: req.body.phoneNumber.trim()
       };
-      updateDb(data);
+      await User.create(data);
     }
     res.redirect("/users");
   }
