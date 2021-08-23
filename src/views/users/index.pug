@@ -5,4 +5,11 @@ form(action="/users/search", method="GET")
   button Search
 ul
   each user in users
-    li= user.name
+    li
+      span= user.name
+
+      span &nbsp;&nbsp;
+      a(href="/users/view/" + user.id) View
+
+      span &nbsp;&nbsp;
+      a(href="/users/delete/" + user.id) Delete

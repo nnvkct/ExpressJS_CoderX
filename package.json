@@ -5,7 +5,9 @@
   "description": "Node.js example server starter project",
   "main": "src/index.js",
   "nodemonConfig": {
-    "ignore": ["/sandbox/fdsfs.json"]
+    "ignore": [
+      "/sandbox/fdsfs.json"
+    ]
   },
   "scripts": {
     "start": "nodemon src/index.js"
@@ -15,7 +17,8 @@
     "dotenv": "10.0.0",
     "express": "4.17.1",
     "lowdb": "2.1.0",
-    "pug": "3.0.2"
+    "pug": "3.0.2",
+    "shortid": "2.2.16"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
