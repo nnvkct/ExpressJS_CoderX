@@ -1,6 +1,16 @@
-h1 Create new user
-
-form(action="/users/create", method="POST")
-  label(for="name") Name
-  input(type="text", name="name", id="name")
-  button Create
+extends ../layout/common
+block content
+  h1 Create new user
+  
+  .d-flex.flex-column(style="width:300px;")
+    if errors
+      each error in errors
+        .alert.alert-danger(role='alert')= error
+    form(action="/users/create", method="POST")
+      .mb-3
+        label.form-label(for='name') Name
+        input#name.form-control(type='text', name="name", value = values ? values.name.trim() : "")
+      .mb-3
+        label.form-label(for='phoneNumber') Phone Number:
+        input#phoneNumber.form-control(type='text', name="phoneNumber", value = values ? values.phoneNumber.trim() : "")
+      button.btn.btn-primary Create

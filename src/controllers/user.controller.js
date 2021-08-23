@@ -70,9 +70,29 @@ var controller = {
     res.render(join(__dirname, "views/users/index"), { users: matchUser });
   },
   createNewUser: function (req, res) {
-    req.body.id = shortid();
-    updateDb(req.body);
+    var errors = [];
+    var values = req.body;
 
+    if (!req.body.name.trim() || !req.body.name) {
+      errors.push("Vui lòng nhập tên!");
+    }
+
+    if (!req.body.phoneNumber || !req.body.phoneNumber.trim()) {
+      errors.push("Vui lòng nhập số điện thoại!");
+    }
+
+    if (errors.length) {
+      console.log(values);
+      res.render(join(__dirname, "views/users/create"), { errors, values });
+      return;
+    }
+
+    if (req.body) {
+      req.body.id = shortid();
+      req.body.name = req.body.name.trim();
+      req.body.phoneNumber = req.body.phoneNumber.trim();
+      updateDb(req.body);
+    }
     res.redirect("/users");
   }
 };
